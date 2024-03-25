@@ -1,0 +1,2 @@
+CREATE  DATABASE kodboris;
+GRANT ALL PRIVILEGES ON DATABASE kodboris TO postgres;

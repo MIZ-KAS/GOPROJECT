@@ -1,0 +1,24 @@
+name: GO Application
+
+on:
+  push:
+    branches:
+      - ci
+    
+jobs:
+  ssh:
+    name: SSH into the EC2 In
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to the instances
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.Shakirat_HOST }}
+          username: ${{ secrets.Shakirat_USERNAME }}
+          key: ${{ secrets.Shakirat_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd GOPROJECT
+            git pull origin ci
+            docker compose down || true 
+            docker compose up -d

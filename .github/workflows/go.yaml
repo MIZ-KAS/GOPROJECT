@@ -19,6 +19,6 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd GOPROJECT
-            git pull origin ci
+            git pull cs ci
             docker compose down || true 
             docker compose up -d
